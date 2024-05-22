@@ -1,0 +1,55 @@
+﻿@model Product
+@{
+    ViewBag.pageTitle = "Product Management";
+    ViewBag.cardTitle = "Edit Product";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+<div class="row">
+    <div class="col-md-4">
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Img" />
+     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+     <div class="mb-3">
+        <label asp-for="Description"></label>
+        <input class="form-control" asp-for="Description" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+     <div class="mb-3">
+        <label asp-for="price"></label>
+        <input class="form-control" asp-for="price" />
+        <span asp-validation-for="price" class="text-danger"></span>
+    </div>
+     <div class="mb-3">
+        <label asp-for="Img"></label>
+        <input type="file" name="file" class="form-control" id="file" />
+        <span asp-validation-for="Img" class="text-danger"></span>
+    </div>
+     <div class="mb-3">
+        <label asp-for="CategoryId" class="control-label"></label>
+        <select asp-for="CategoryId" asp-items="ViewBag.categoryList" class="form-control">
+            <option disabled selected>---Select Category---</option>
+        </select>
+        <span asp-validation-for="price" class="text-danger"></span>
+    </div>
+     <div class="mb-3">
+       <button type="submit" class="btn btn-success"  >Save</button>
+       <a asp-controller="Product" asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>
+</div>
+ <div class="col-md-4">
+     <div class="container">
+         <img src="~/@Model.Img" width="300px" height="300px" />
+     </div>
+ </div>
+</div>
+@section scripts{
+                <partial name="_ValidationScriptsPartial" />
+}
