@@ -18,7 +18,7 @@
     </div>
      <div class="mb-3">
         <label asp-for="Description"></label>
-        <input class="form-control" asp-for="Description" disabled />
+        <textarea class="form-control" asp-for="Description" disabled ></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
 
     </div>
@@ -30,5 +30,14 @@
 </div>
 </div>
 @section scripts{
-                <partial name="_ValidationScriptsPartial" />
+            <script>
+                tinymce.init({
+                    selector: 'textarea'
+
+                });
+            </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
 }

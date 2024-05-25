@@ -18,9 +18,9 @@ function loaddata() {
                 "data": "id",
                 "render": function (data) {
                     return `
-<a href="/Admin/Product/Edit/${data}" class="btn btn-success">Edit</a>
-<a href="#"  onclick="DeleteItem('/Admin/Product/Delete/${data}')"  class="btn btn-danger">Delete</a>
-                        `
+
+<a href="/Admin/Product/Edit/${data}" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+<a  onclick="DeleteItem('/Admin/Product/Delete/${data}')" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>`
                 }
                 }
            
