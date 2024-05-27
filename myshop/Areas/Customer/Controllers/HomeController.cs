@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using myshop.DataAccess.Repository;
 using myshop.DataAccess.Repository.IRepository;
 using myshop.Entities;
+using myshop.Utilities;
 using System.Security.Claims;
+using X.PagedList;
 
 namespace myshop.Areas.Customer.Controllers
 {
@@ -15,9 +17,11 @@ namespace myshop.Areas.Customer.Controllers
         {
             _unitofWork = unitofWork;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? page)
         {
-            var products = _unitofWork.product.GetAll();
+            var PageNumber = page ?? 1;
+            int PageSize = 6; //number product that appeard in page
+            var products = _unitofWork.product.GetAll().ToPagedList(PageNumber, PageSize);
             return View(products);
         }
         public IActionResult Details(int Id)
@@ -56,11 +60,12 @@ namespace myshop.Areas.Customer.Controllers
             {
                 //add cart record
                 _unitofWork.shoppingcart.Add(cart);
+                
+                HttpContext.Session.SetInt32(SD.SessionKey,
+                _unitofWork.shoppingcart.GetAll(u => u.ApplicationUserId == userId).Count());
                 _unitofWork.save();
-                //HttpContext.Session.SetInt32(SD.SessionCart,
-                //_unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count());
             }
-            TempData["success"] = "Cart updated successfully";
+            TempData["success"] = "Cart Added successfully";
             return RedirectToAction("Index");
         }
     }

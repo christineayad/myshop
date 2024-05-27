@@ -17,8 +17,7 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddDbContext<ApplictionDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-//AddStripe
-builder.Services.Configure<StripeData>(builder.Configuration.GetSection("Stripe"));
+
 
 //service Repository
 builder.Services.AddScoped<IUnitofWork,UnitofWork>();
@@ -27,7 +26,11 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(
     option=>option.Lockout.DefaultLockoutTimeSpan=TimeSpan.FromHours(4))
     .AddEntityFrameworkStores<ApplictionDbContext>()
    .AddDefaultTokenProviders().AddDefaultUI();
-
+//AddStripe
+builder.Services.Configure<StripeData>(builder.Configuration.GetSection("Stripe"));
+//Add session 3shan button AddToCar.
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -45,6 +48,8 @@ app.UseRouting();
 //Add this middleware after route (APIKey==SecretKey) 
 StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:Secretkey").Get<string>();
 app.UseAuthorization();
+//Session AddToCart
+app.UseSession();
 app.MapRazorPages(); //add this 3shan appears pages Register w login .....
 app.MapControllerRoute(
     name: "default",

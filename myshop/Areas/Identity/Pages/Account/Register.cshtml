@@ -79,25 +79,13 @@
 @model RegisterModel
 
 
-<div class="card shadow border-0 mt-4">
-    <div class="card-header bg-secondary bg-gradient ml-0 py-4">
-        <div class="row">
-            <div class="col-12 text-center">
-               @* @if (User.IsInRole(SD.Role_Admin)) {*@
-                   @* <h2 class="py-2 text-white">Register - ADMIN PORTAL</h2>*@
-                @*}
-                else{
-                <h2 class="py-2 text-white">Register</h2>
-                }*@
-                 <h2 class="py-2 text-white">Register</h2>
-            </div>
-        </div>
-    </div>
-    <div class="card-body p-4">
+
+  
+    <div class="container p-4">
         <div class="row pt-3">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <form id="registerForm" class="row" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                    <h3 class="border-bottom pb-3 mb-4 text-secondary text-center">Create a new account.</h3>
+                    <h3 class="border-bottom pb-3 mb-4 ">Create a new account.</h3>
                     <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                     <div class="form-floating mb-3 col-md-12">
                         <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
@@ -147,7 +135,7 @@
                     </div>
                      @if (User.IsInRole(SD.AdminRole)) //de role el hat5tbraha
                     { 
-                        <div class="form-floating mb-3 col-md-6">
+                        <div class="form-floating mb-3 col-md-12">
                             <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select">
                                 <option disabled selected>-Select Role-</option>
                             </select>
@@ -172,6 +160,13 @@
                     </div>
                 </form>
             </div>
+            <div class="col-md-6 col-md-offset-2">
+                    <section>
+                        <div class="divimg">
+                          <img src="~/img/login.jpg" class="logimge" style="margin-top:50px;"/>
+                          </div>
+                        </section>
+                        </div>
           @*  @if (!User.IsInRole(SD.Role_Admin))
             {
                 <div class="col-md-12 p-3 text-center">
@@ -209,23 +204,12 @@
             }*@
         </div>
     </div>
-</div>
+
 
 
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-    @*<script>
-        $(document).ready(function () {
-            $('#Input_Role').change(function(){
-                var selection = $('#Input_Role Option:Selected').text();
-                if(selection=='Company'){
-                    $('#Input_CompanyId').show();
-                }
-                else{
-                    $('#Input_CompanyId').hide();
-                }
-            })
-        })
-    </script>*@
+    
+
 }

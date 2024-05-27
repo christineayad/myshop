@@ -211,12 +211,12 @@ namespace myshop.Areas.Customer.Controllers
                 _unitofWork.save();
             }
 
-			//}
-			//hyro7 b3d kda tlama paid hyshlhalo men cart bta3o
-			//list from shoppingcart el 5asa ll user da bs .....
-			IEnumerable<ShoppingCart> shoppingcartRemove = _unitofWork.shoppingcart.GetAll(u => u.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
-			_unitofWork.shoppingcart.RemoveRange(shoppingcartRemove);
-			_unitofWork.save();
+            //}
+            //hyro7 b3d kda tlama paid hyshlhalo men cart bta3o
+            //list from shoppingcart el 5asa ll user da bs .....
+            IEnumerable<ShoppingCart> shoppingcartRemove = _unitofWork.shoppingcart.GetAll(u => u.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
+            _unitofWork.shoppingcart.RemoveRange(shoppingcartRemove);
+            _unitofWork.save();
             return View(id);
 		}
 	}
