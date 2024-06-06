@@ -55,15 +55,20 @@ namespace myshop.Areas.Customer.Controllers
                 cartFromDb.Count += cart.Count;
                 _unitofWork.shoppingcart.update(cartFromDb);
                 _unitofWork.save();
+                var count = _unitofWork.shoppingcart.GetAll(x => x.ApplicationUserId == userId).Count();
+                HttpContext.Session.SetInt32(SD.SessionKey, count);
             }
             else
             {
-                //add cart record
-                _unitofWork.shoppingcart.Add(cart);
                 
-                HttpContext.Session.SetInt32(SD.SessionKey,
-                _unitofWork.shoppingcart.GetAll(u => u.ApplicationUserId == userId).Count());
+                _unitofWork.shoppingcart.Add(cart);
                 _unitofWork.save();
+                //4- add in session  from to cart record setsession(key,number of items);
+                //  HttpContext.Session.SetInt32(SD.SessionKey, _unitofWork.shoppingcart.GetAll(u => u.ApplicationUserId == userId).Count());
+                var count = _unitofWork.shoppingcart.GetAll(x => x.ApplicationUserId == userId).Count();
+                HttpContext.Session.SetInt32(SD.SessionKey, count);
+                //HttpContext.Session.SetInt32(SD.SessionKey,
+                // _unitofWork.shoppingcart.GetAll(u => u.ApplicationUserId == userId).ToList().Count());
             }
             TempData["success"] = "Cart Added successfully";
             return RedirectToAction("Index");

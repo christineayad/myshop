@@ -25,7 +25,7 @@ namespace myshop.Utilities
 		//public const string PaymentStatusDelayedPayment = "ApprovedForDelayedPayment";
 		public const string PaymentStatusRejected = "Rejected";
 
-
+		//3-Add SessionKey
 		public const string SessionKey = "SessionShoppingCart";
 	}
 }

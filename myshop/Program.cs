@@ -28,7 +28,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(
    .AddDefaultTokenProviders().AddDefaultUI();
 //AddStripe
 builder.Services.Configure<StripeData>(builder.Configuration.GetSection("Stripe"));
-//Add session 3shan button AddToCar.
+//1-Add session 3shan button AddToCart.
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 var app = builder.Build();
@@ -48,7 +48,7 @@ app.UseRouting();
 //Add this middleware after route (APIKey==SecretKey) 
 StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:Secretkey").Get<string>();
 app.UseAuthorization();
-//Session AddToCart
+//2-Session AddToCart
 app.UseSession();
 app.MapRazorPages(); //add this 3shan appears pages Register w login .....
 app.MapControllerRoute(

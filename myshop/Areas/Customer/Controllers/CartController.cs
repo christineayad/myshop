@@ -52,6 +52,10 @@ namespace myshop.Areas.Customer.Controllers
             {
                 //remove from shopping cart
                 _unitofWork.shoppingcart.Remove(cartfromDb);
+               
+                //Set Session when Remove 
+                HttpContext.Session.SetInt32(SD.SessionKey, _unitofWork.shoppingcart
+                       .GetAll(u => u.ApplicationUserId == cartfromDb.ApplicationUserId).Count() - 1);
                 _unitofWork.save();
                 return RedirectToAction(nameof(Index),"Home");
             }
@@ -59,9 +63,13 @@ namespace myshop.Areas.Customer.Controllers
             {
                 cartfromDb.Count -= 1;
                 _unitofWork.shoppingcart.update(cartfromDb);
-               
+                _unitofWork.save();
+                //Set Session when Remove 
+               // var count = _unitofWork.shoppingcart.GetAll(x => x.ApplicationUserId == cartfromDb.ApplicationUserId).ToList().Count() - 1;
+               // HttpContext.Session.SetInt32(SD.SessionKey, count);
+
             }
-            _unitofWork.save();
+            
             return RedirectToAction(nameof(Index));
             
 
@@ -73,8 +81,11 @@ namespace myshop.Areas.Customer.Controllers
 
             //remove from shopping cart
             _unitofWork.shoppingcart.Remove(cartfromDb);
-
             _unitofWork.save();
+            //Set Session when Remove 
+            var count = _unitofWork.shoppingcart.GetAll(x => x.ApplicationUserId == cartfromDb.ApplicationUserId).ToList().Count();
+            HttpContext.Session.SetInt32(SD.SessionKey, count);
+           
             return RedirectToAction(nameof(Index));
 
         }

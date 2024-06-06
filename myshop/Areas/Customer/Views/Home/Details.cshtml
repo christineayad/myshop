@@ -4,7 +4,7 @@
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
                     <input hidden asp-for="ProductId" />
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="~/@Model.product.Img" alt="..." width="600" height="700"></div>
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="~/@Model.product.Img" alt="..." width="600" height="500"></div>
                     <div class="col-md-6">
                       <div class="small mb-1">@Model.product.Category.Name</div>
                         <h1 class="display-5 fw-bolder">@Model.product.Name</h1>
@@ -12,7 +12,7 @@
                             <span class="text-decoration-line-through">$45.00</span>
                             <span>@Model.product.price</span>
                         </div>
-                        <p class="lead">@Model.product.Description</p>
+                        <p class="lead">@Html.Raw(Model.product.Description)</p>
                         <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" asp-for="Count" style="max-width: 3rem">
                             <button class="btn btn-outline-dark flex-shrink-0" type="submit">
