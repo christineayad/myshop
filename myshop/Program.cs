@@ -53,7 +53,7 @@ app.UseSession();
 app.MapRazorPages(); //add this 3shan appears pages Register w login .....
 app.MapControllerRoute(
     name: "default",
-    pattern: "{area=Admin}/{controller=Category}/{action=Index}/{id?}");
+    pattern: "{area=Admin}/{controller=Home}/{action=Index}/{id?}");
 app.MapControllerRoute(
     name: "Customer",
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
