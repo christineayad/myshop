@@ -20,6 +20,28 @@
                 <label asp-for="Input.PhoneNumber" class="form-label"></label>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
+
+             <div class="form-floating mb-3">
+                <input asp-for="Input.Name" class="form-control" placeholder="Please enter your Name."/>
+                <label asp-for="Input.Name" class="form-label"></label>
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+
+             <div class="form-floating mb-3">
+                <input asp-for="Input.City" class="form-control" placeholder="Please enter your City."/>
+                <label asp-for="Input.City" class="form-label"></label>
+                <span asp-validation-for="Input.City" class="text-danger"></span>
+            </div>
+             <div class="form-floating mb-3">
+                <input asp-for="Input.State" class="form-control" placeholder="Please enter your State."/>
+                <label asp-for="Input.State" class="form-label"></label>
+                <span asp-validation-for="Input.State" class="text-danger"></span>
+            </div>
+             <div class="form-floating mb-3">
+                <input asp-for="Input.Street" class="form-control" placeholder="Please enter your Street."/>
+                <label asp-for="Input.Street" class="form-label"></label>
+                <span asp-validation-for="Input.Street" class="text-danger"></span>
+            </div>
             <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
         </form>
     </div>

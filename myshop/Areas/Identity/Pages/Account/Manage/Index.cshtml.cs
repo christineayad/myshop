@@ -59,6 +59,10 @@ namespace myshop.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            public string Name { get; set; }
+            public string City { get; set; }
+            public string State { get; set; }
+            public string Street { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -70,7 +74,11 @@ namespace myshop.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Name=user.Name,
+                City = user.City,
+                State=user.State,
+                Street=user.Street
             };
         }
 
@@ -101,6 +109,30 @@ namespace myshop.Areas.Identity.Pages.Account.Manage
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var Name=user.Name;
+            var City = user.City;
+            var State=user.State;
+            var Street = user.Street;
+            if(Input.City==City)
+            {
+                user.City = Input.City;
+                await _userManager.UpdateAsync(user);
+            }
+            if (Input.Name == Name)
+            {
+                user.Name = Input.Name;
+                await _userManager.UpdateAsync(user);
+            }
+            if (Input.State == State)
+            {
+                user.State = Input.State;
+                await _userManager.UpdateAsync(user);
+            }
+            if (Input.Street == Street)
+            {
+                user.Street = Input.Street;
+                await _userManager.UpdateAsync(user);
+            }
             if (Input.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
