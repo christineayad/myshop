@@ -21,6 +21,7 @@ namespace myshop.DataAccess.Repository
         public IOrderDetailRepository OrderDetail { get; private set; }
 
         public IApplicationUserRepository applicationuser { get; private set; }
+        public IstoreRepository Store { get; private set; }
 
         private readonly ApplictionDbContext _context;
         public UnitofWork(ApplictionDbContext context)
@@ -32,6 +33,7 @@ namespace myshop.DataAccess.Repository
             OrderHeader= new OrderHeaderRepository(context);
             OrderDetail=new OrderDetailRepository(context);
             applicationuser = new ApplicationUserRepository(context);
+            Store = new StoreRepository(context);
         }
 
         public void Dispose()

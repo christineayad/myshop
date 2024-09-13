@@ -15,5 +15,6 @@ namespace myshop.DataAccess.Repository.IRepository
         public IOrderHeaderRepository OrderHeader { get; }
         public IOrderDetailRepository OrderDetail { get; }
         public IApplicationUserRepository applicationuser { get; }
+        public IstoreRepository Store { get; }
     }
 }

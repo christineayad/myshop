@@ -1,0 +1,57 @@
+﻿@model myshop.Entities.Models.Store
+@{
+    ViewBag.pageTitle = "Store Management";
+    ViewBag.cardTitle = "Edit Store";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+<div class="row">
+    <div class="col-md-4">
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+     <div class="mb-3">
+        <label asp-for="Address"></label>
+        <textarea class="form-control" asp-for="Address" ></textarea>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+     <div class="mb-3">
+        <label asp-for="PhoneNumber"></label>
+        <input class="form-control" asp-for="PhoneNumber" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+      <div class="mb-3">
+        <label asp-for="storekeeper"></label>
+        <input class="form-control" asp-for="storekeeper" />
+        <span asp-validation-for="storekeeper" class="text-danger"></span>
+    </div>
+      <div class="mb-3">
+        <label asp-for="Minum_order"></label>
+        <input class="form-control" asp-for="Minum_order" />
+        <span asp-validation-for="Minum_order" class="text-danger"></span>
+    </div>
+
+
+     <div class="mb-3">
+       <button type="submit" class="btn btn-primary"  >Submit</button>
+       <a asp-controller="Store" asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>
+</div>
+    @* <div class="col-md-4">
+     <div class="container">
+         <img id="previewimg" width="300px" height="300px" />
+     </div>
+ </div>*@
+</div>
+@section scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+}
