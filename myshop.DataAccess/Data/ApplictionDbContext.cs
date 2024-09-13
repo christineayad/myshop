@@ -19,6 +19,7 @@ namespace myshop.DataAccess.Data
         public DbSet<OrderHeader> OrderHeaders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Store> Stores { get; set; }
+        public DbSet<StoreProduct> StoreProducts { get; set; }
 
 
 

@@ -1,0 +1,50 @@
+﻿@model myshop.Entities.Models.StoreProduct
+@{
+    ViewBag.pageTitle = "StoreProduct Management";
+    ViewBag.cardTitle = "Create StoreProduct";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+<div class="row">
+    <div class="col-md-4">
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+  
+    
+   
+     <div class="mb-3">
+        <label asp-for="StoreId" class="control-label"></label>
+        <select asp-for="StoreId" asp-items="ViewBag.StoreList" class="form-control">
+            <option disabled selected>---Select Store---</option>
+        </select>
+        <span asp-validation-for="StoreId" class="text-danger"></span>
+    </div>
+
+     <div class="mb-3">
+        <label asp-for="ProductId" class="control-label"></label>
+        <select asp-for="ProductId" asp-items="ViewBag.ProductList" class="form-control">
+            <option disabled selected>---Select Store---</option>
+        </select>
+        <span asp-validation-for="ProductId" class="text-danger"></span>
+    </div>
+      <div class="mb-3">
+
+        <label asp-for="Quantity_Stocks"></label>
+        <input class="form-control" asp-for="Quantity_Stocks" />
+        <span asp-validation-for="Quantity_Stocks" class="text-danger"></span>
+    </div>
+
+     <div class="mb-3">
+       <button type="submit" class="btn btn-primary"  >Submit</button>
+       <a asp-controller="StoreProduct" asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>
+</div>
+
+</div>
+@section scripts{
+       
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+}
