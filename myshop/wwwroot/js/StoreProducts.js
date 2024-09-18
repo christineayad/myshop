@@ -12,6 +12,7 @@ function loaddata() {
             { "data": "store.name" },
             { "data": "product.name" },
             { "data": "quantity_Stocks" },
+             { "data": "priceProduct" },
            
             {
 

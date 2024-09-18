@@ -219,6 +219,26 @@ namespace myshop.Areas.Customer.Controllers
                 
                 _unitofWork.OrderHeader.UpdateOrderStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
                 orderHeader.PaymentIntentId = session.PaymentIntentId;//hena order 7slo paied
+                var shoppingCartItems = _unitofWork.shoppingcart.GetAll(u => u.ApplicationUserId == orderHeader.ApplicationUserId, includeword: "product");
+
+                foreach (var cartItem in shoppingCartItems)
+                {
+                    //hena 7ded store =1 azay a3melha dynamic
+                    // var storeProduct = _unitofWork.StoreProduct.GetFirstorDefault(sp => sp.ProductId == cartItem.ProductId && sp.StoreId == 1, includeword: "Store");
+                    var storeProduct = _unitofWork.StoreProduct.GetStorewithPrice(cartItem.ProductId, cartItem.Count);
+
+                    if (storeProduct != null)
+                    {
+                      
+                        storeProduct.Quantity_Stocks -= cartItem.Count;
+
+                      
+                        if (storeProduct.Quantity_Stocks < 0)
+                        {
+                            storeProduct.Quantity_Stocks = 0;
+                        }
+                    }
+                }
                 _unitofWork.save();
             }
 
