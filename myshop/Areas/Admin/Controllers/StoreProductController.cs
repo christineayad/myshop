@@ -100,5 +100,44 @@ namespace myshop.Areas.Admin.Controllers
             _unitofWork.save();
             return Json(new { success = true, message = "item has been Deleted" });
         }
+        [HttpGet]
+        public IActionResult Transform()
+        {
+            IEnumerable<SelectListItem> ListStore = _unitofWork.Store.GetAll(x=>x.IsMain==true)
+                .Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() });
+            ViewBag.StoreList = ListStore;
+
+            IEnumerable<SelectListItem> ListStore2 = _unitofWork.Store.GetAll(x => x.IsMain == false)
+              .Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() });
+            ViewBag.StoreList2 = ListStore2;
+
+            IEnumerable<SelectListItem> ListProduct = _unitofWork.product.GetAll()
+            .Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() });
+            ViewBag.ProductList = ListProduct;
+
+
+
+
+
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Transform(StoreProduct stproduct)
+        {
+            //if (stproduct.Store.IsMain == true && stproduct.Quantity_Stocks <= 0)
+            //{
+                var quantityMain = _unitofWork.StoreProduct.GetAll(s => s.ProductId == stproduct.ProductId && s.Store.IsMain == true).FirstOrDefault();
+                var quantity=_unitofWork.StoreProduct.GetAll(s => s.ProductId == stproduct.ProductId && s.Store.IsMain==false ).FirstOrDefault();
+               quantityMain.Quantity_Stocks += quantity.Quantity_Stocks;
+                quantity.Quantity_Stocks = 0;
+            _unitofWork.save();
+          return RedirectToAction("Index");
+           // returnView(stproduct);
+            //}
+            //else
+            //{ return View(); }
+
+        }
     }
 }
