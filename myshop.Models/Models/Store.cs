@@ -16,5 +16,6 @@ namespace myshop.Entities.Models
         public string PhoneNumber { get; set; }
         public string storekeeper { get; set; }
         public double Minum_order { get; set; }
+        public bool IsMain { get; set; }
     }
 }

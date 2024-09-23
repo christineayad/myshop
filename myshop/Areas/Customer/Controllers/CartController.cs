@@ -225,7 +225,7 @@ namespace myshop.Areas.Customer.Controllers
                 {
                     //hena 7ded store =1 azay a3melha dynamic
                     // var storeProduct = _unitofWork.StoreProduct.GetFirstorDefault(sp => sp.ProductId == cartItem.ProductId && sp.StoreId == 1, includeword: "Store");
-                    var storeProduct = _unitofWork.StoreProduct.GetStorewithPrice(cartItem.ProductId, cartItem.Count);
+                    var storeProduct = _unitofWork.StoreProduct.GetStore(cartItem.ProductId, cartItem.Count);
 
                     if (storeProduct != null)
                     {

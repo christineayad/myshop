@@ -20,9 +20,9 @@ namespace myshop.Entities.Models
         public int ProductId { get; set; }
         
         public virtual Product? Product { get; set; }
-        
+
         public int Quantity_Stocks { get; set; }
-        public decimal PriceProduct { get; set; }
+
 
     }
 }

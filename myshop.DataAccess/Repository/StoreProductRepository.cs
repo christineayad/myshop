@@ -17,13 +17,15 @@ namespace myshop.DataAccess.Repository
             _context = context;
         }
 
-        public StoreProduct GetStorewithPrice(int productId, int quantity)
+        public StoreProduct GetStore(int productId, int quantity)
         {
-            
-           var stocks= _context.StoreProducts.Where(s => s.ProductId == productId && s.Quantity_Stocks >= quantity).OrderBy(s=>s.PriceProduct).ThenByDescending(s=>s.Quantity_Stocks).ThenBy(_=>Guid.NewGuid()).ToList();
-            
-            var stock = stocks.FirstOrDefault();
-            return stock;
+
+            var stock= _context.StoreProducts.Where(s => s.ProductId == productId && s.Quantity_Stocks > quantity && s.Store.IsMain==true).SingleOrDefault();
+                //.OrderBy(s=>s.PriceProduct).ThenByDescending(s=>s.Quantity_Stocks).ThenBy(_=>Guid.NewGuid())
+
+           //  var stock = stocks.FirstOrDefault();
+             return stock;
+          
 
 
         }
@@ -34,7 +36,7 @@ namespace myshop.DataAccess.Repository
             if(stproductdb!=null)
             {
                 stproductdb.Quantity_Stocks = stproduct.Quantity_Stocks;
-                stproductdb.PriceProduct = stproduct.PriceProduct;
+               
                 stproductdb.ProductId = stproduct.ProductId;
                 stproductdb.StoreId=stproduct.StoreId;
                 

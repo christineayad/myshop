@@ -27,7 +27,7 @@ namespace myshop.DataAccess.Repository
                 storedb.PhoneNumber = store.PhoneNumber;
                 storedb.storekeeper = store.storekeeper;
                 storedb.Minum_order = store.Minum_order;
-
+                storedb.IsMain = store.IsMain;
             }
         }
     }

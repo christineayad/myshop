@@ -14,6 +14,7 @@ function loaddata() {
             { "data": "phoneNumber" },
             { "data": "storekeeper" },
             { "data": "minum_order" },
+            { "data": "isMain" },
             {
 
                 "data": "id",

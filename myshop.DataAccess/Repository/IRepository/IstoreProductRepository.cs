@@ -10,6 +10,6 @@ namespace myshop.DataAccess.Repository.IRepository
     public interface IstoreProductRepository:IGenericRepository<StoreProduct>
     {
         void update(StoreProduct stproduct);
-        StoreProduct GetStorewithPrice(int productId, int quantity);
+        StoreProduct GetStore(int productId, int quantity);
     }
 }
